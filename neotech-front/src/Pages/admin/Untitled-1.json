@@ -1,0 +1,106 @@
+[
+  {
+    "id": "b0705b25-fb8e-46c7-b9b5-605bc37fa8c0",
+    "name": "Brand",
+    "slug": "brand",
+    "type": 0,
+    "typeName": "Select",
+    "isActive": true,
+    "sortOrder": 1,
+    "createdAt": "2025-09-03T06:30:05.5620276",
+    "updatedAt": null,
+    "options": [
+      {
+        "id": "5a5ec9b2-96d4-47e4-8b7c-327e3784d0ac",
+        "filterId": "b0705b25-fb8e-46c7-b9b5-605bc37fa8c0",
+        "value": "samsung",
+        "displayName": "Samsung",
+        "color": null,
+        "iconUrl": null,
+        "isActive": true,
+        "sortOrder": 2,
+        "createdAt": "2025-09-03T06:30:05.5831857"
+      },
+      {
+        "id": "a719b4ec-8611-4c1b-93e5-7160275756fb",
+        "filterId": "b0705b25-fb8e-46c7-b9b5-605bc37fa8c0",
+        "value": "nike",
+        "displayName": "Nike",
+        "color": null,
+        "iconUrl": null,
+        "isActive": true,
+        "sortOrder": 3,
+        "createdAt": "2025-09-03T06:30:05.5831862"
+      },
+      {
+        "id": "aacc4126-036d-4012-87b0-dcbdb858b48f",
+        "filterId": "b0705b25-fb8e-46c7-b9b5-605bc37fa8c0",
+        "value": "apple",
+        "displayName": "Apple",
+        "color": null,
+        "iconUrl": null,
+        "isActive": true,
+        "sortOrder": 1,
+        "createdAt": "2025-09-03T06:30:05.583152"
+      }
+    ]
+  },
+  {
+    "id": "cbbc55b0-13b3-4c4b-8ec7-785c29c05dc0",
+    "name": "Size",
+    "slug": "size",
+    "type": 0,
+    "typeName": "Select",
+    "isActive": true,
+    "sortOrder": 2,
+    "createdAt": "2025-09-03T06:30:05.5620579",
+    "updatedAt": null,
+    "options": [
+      {
+        "id": "a63c11be-68b8-49d2-a28f-7e95a55e6970",
+        "filterId": "cbbc55b0-13b3-4c4b-8ec7-785c29c05dc0",
+        "value": "l",
+        "displayName": "Large",
+        "color": null,
+        "iconUrl": null,
+        "isActive": true,
+        "sortOrder": 3,
+        "createdAt": "2025-09-03T06:30:05.5831921"
+      },
+      {
+        "id": "3fa65e7a-de19-40fe-ad88-d5f145ed8f1d",
+        "filterId": "cbbc55b0-13b3-4c4b-8ec7-785c29c05dc0",
+        "value": "s",
+        "displayName": "Small",
+        "color": null,
+        "iconUrl": null,
+        "isActive": true,
+        "sortOrder": 1,
+        "createdAt": "2025-09-03T06:30:05.5831866"
+      },
+      {
+        "id": "517fd626-1929-41dc-952c-f3f7c6826b1c",
+        "filterId": "cbbc55b0-13b3-4c4b-8ec7-785c29c05dc0",
+        "value": "m",
+        "displayName": "Medium",
+        "color": null,
+        "iconUrl": null,
+        "isActive": true,
+        "sortOrder": 2,
+        "createdAt": "2025-09-03T06:30:05.5831909"
+      }
+    ]
+  },
+  {
+    "id": "606aa1d6-0c08-4d92-82ca-1707b4b6e2de",
+    "name": "Price Range",
+    "slug": "price-range",
+    "type": 2,
+    "typeName": "Range",
+    "isActive": true,
+    "sortOrder": 3,
+    "createdAt": "2025-09-03T06:30:05.5620593",
+    "updatedAt": null,
+    "options": []
+  }
+]

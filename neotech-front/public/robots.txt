@@ -1,0 +1,27 @@
+# robots.txt for NeoTech Electronics
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private pages
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /profile
+Disallow: /cart
+Disallow: /favorites
+
+# Allow important pages
+Allow: /
+Allow: /products
+Allow: /about
+Allow: /contact
+Allow: /brands
+Allow: /categories/
+
+# Sitemap location (update with your actual domain)
+Sitemap: https://neotech.az/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+Crawl-delay: 1
+

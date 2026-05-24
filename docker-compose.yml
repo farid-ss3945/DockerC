@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # Database Service
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Password123!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  # Backend API Service
+  backend:
+    build: ./neotech-back
+    depends_on:
+      - db
+    environment:
+      ASPNETCORE_URLS: "http://+:5056"
+      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=NeotechDB;User Id=sa;Password=Password123!;Trust Server Certificate=True;"
+      JwtSettings__SecretKey: "765248acbdbe63ff7ac5f272f25c8e1062bf09af5736e220499948379ee5a9d9"
+      JwtSettings__Issuer: "http://localhost:5056"
+      JwtSettings__Audience: "http://localhost:5056"
+      
+    ports:
+      - "5056:5056"
+
+  # Frontend Web Service
+  frontend:
+    build: ./neotech-front
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
