@@ -124,7 +124,7 @@ public class ProductPdfService : IProductPdfService
         foreach (var pdf in pdfs)
         {
             var pdfWithIncludes = await _unitOfWork.Repository<ProductPdf>().GetByIdWithIncludesAsync(pdf.Id, 
-                p => p.Product, p => p.CreatedByUser, p => p.UpdatedByUser);
+                p => p.Product, p => p.CreatedByUser, p => p.UpdatedByUser!);
             if (pdfWithIncludes != null)
                 pdfsWithIncludes.Add(MapToDto(pdfWithIncludes));
         }

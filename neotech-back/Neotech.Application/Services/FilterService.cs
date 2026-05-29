@@ -302,7 +302,7 @@ public class FilterService : IFilterService
             var fullAttr = await _attributeRepository.FirstOrDefaultWithIncludesAsync(
                 a => a.Id == attr.Id, 
                 a => a.Filter, 
-                a => a.FilterOption,
+                a => a.FilterOption!,
                 a => a.Product);
             if (fullAttr != null)
             {
@@ -371,7 +371,7 @@ public class FilterService : IFilterService
         var fullAttribute = await _attributeRepository.FirstOrDefaultWithIncludesAsync(
             a => a.Id == existingAttribute.Id,
             a => a.Filter,
-            a => a.FilterOption,
+            a => a.FilterOption!,
             a => a.Product);
 
         return _mapper.Map<ProductAttributeValueDto>(fullAttribute);

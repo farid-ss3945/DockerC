@@ -423,7 +423,7 @@ public class ProductService : IProductService
 
         // Get the created product with all relationships for proper mapping
         var createdProduct = await _unitOfWork.Repository<Product>()
-            .GetByIdWithIncludesAsync(product.Id, p => p.Category, p => p.Brand, p => p.Prices);
+            .GetByIdWithIncludesAsync(product.Id, p => p.Category, p => p.Brand!, p => p.Prices);
         
         var productDto = _mapper.Map<ProductDto>(createdProduct);
         
@@ -621,7 +621,7 @@ public class ProductService : IProductService
 
         // Return product with all related data
         var updatedProduct = await _unitOfWork.Repository<Product>()
-            .GetByIdWithIncludesAsync(id, p => p.Category, p => p.Brand, p => p.Prices, p => p.Images);
+            .GetByIdWithIncludesAsync(id, p => p.Category, p => p.Brand!, p => p.Prices, p => p.Images);
         
         return _mapper.Map<ProductDto>(updatedProduct);
     }
@@ -836,7 +836,7 @@ public class ProductService : IProductService
 
         // Return product with all related data
         var updatedProduct = await _unitOfWork.Repository<Product>()
-            .GetByIdWithIncludesAsync(id, p => p.Category, p => p.Brand, p => p.Prices, p => p.Images);
+            .GetByIdWithIncludesAsync(id, p => p.Category, p => p.Brand!, p => p.Prices, p => p.Images);
         
         return _mapper.Map<ProductDto>(updatedProduct);
     }
@@ -1276,7 +1276,7 @@ public class ProductService : IProductService
         var actualImageUrl = detailImage.ImageUrl;
 
         // Delete file from storage
-        var deleted = await _fileUploadService.DeleteFileAsync(actualImageUrl);
+        var deleted = await _fileUploadService.DeleteFileAsync(actualImageUrl!);
         
         if (deleted)
         {
@@ -1960,7 +1960,7 @@ public class ProductService : IProductService
         if (criteria.Page <= 0) criteria.Page = 1;
         if (criteria.PageSize <= 0) criteria.PageSize = 20;
         
-        var query = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Images, p => p.Brand);
+        var query = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Images, p => p.Brand!);
         var products = query.Where(p => p.IsActive).AsQueryable();
         
         System.Console.WriteLine($"DEBUG: Total active products in database: {products.Count()}");
@@ -2039,8 +2039,8 @@ public class ProductService : IProductService
         {
             System.Console.WriteLine($"DEBUG: Applying price filter - Min: {criteria.MinPrice}, Max: {criteria.MaxPrice}");
             products = products.Where(p => p.Prices.Any(price => 
-                (!hasValidMinPrice || (price.DiscountedPrice ?? price.Price) >= criteria.MinPrice.Value) &&
-                (!hasValidMaxPrice || (price.DiscountedPrice ?? price.Price) <= criteria.MaxPrice.Value)));
+                (!hasValidMinPrice || (price.DiscountedPrice ?? price.Price) >= criteria.MinPrice!.Value) &&
+                (!hasValidMaxPrice || (price.DiscountedPrice ?? price.Price) <= criteria.MaxPrice!.Value)));
             System.Console.WriteLine($"DEBUG: Products after price filter: {products.Count()}");
         }
 
@@ -2160,7 +2160,7 @@ public class ProductService : IProductService
                 var productsWithCustomValue = await attributeRepository.FindAsync(
                     a => a.FilterId == criteria.FilterId && 
                          a.CustomValue != null && 
-                         a.CustomValue.Contains(criteria.CustomValue),
+                         a.CustomValue.Contains(criteria.CustomValue!),
                     cancellationToken);
                 
                 var productIdsWithCustomValue = productsWithCustomValue.Select(a => a.ProductId).Distinct().ToList();
@@ -2975,7 +2975,7 @@ public class ProductService : IProductService
 
     public async Task<PagedResultDto<ProductListDto>> GetProductsPaginatedAsync(ProductPaginationRequestDto request, UserRole? userRole = null, Guid? userId = null, CancellationToken cancellationToken = default)
     {
-        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand);
+        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand!);
         
         // Apply filters
         var filteredProducts = products.Where(p => p.IsActive);
@@ -3048,7 +3048,7 @@ public class ProductService : IProductService
 
     public async Task<PagedResultDto<ProductListDto>> GetProductsByCategoryPaginatedAsync(Guid categoryId, ProductPaginationRequestDto request, UserRole? userRole = null, Guid? userId = null, CancellationToken cancellationToken = default)
     {
-        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand);
+        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand!);
         var categoryIds = await GetCategoryIdsIncludingSubcategories(categoryId, cancellationToken);
         var filteredProducts = products.Where(p => categoryIds.Contains(p.CategoryId) && p.IsActive);
         
@@ -3145,7 +3145,7 @@ public class ProductService : IProductService
             throw new ArgumentException($"Brand with slug '{brandSlug}' not found.");
         }
 
-        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand);
+        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand!);
         var filteredProducts = products.Where(p => p.BrandId == brand.Id && p.IsActive);
         
         // Apply additional filters
@@ -3204,7 +3204,7 @@ public class ProductService : IProductService
 
     public async Task<PagedResultDto<ProductListDto>> GetHotDealsPaginatedAsync(HotDealsPaginationRequestDto request, UserRole? userRole = null, Guid? userId = null, CancellationToken cancellationToken = default)
     {
-        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand);
+        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand!);
         var filteredProducts = products.Where(p => p.IsHotDeal && p.IsActive);
         
         if (!string.IsNullOrWhiteSpace(request.BrandSlug))
@@ -3256,7 +3256,7 @@ public class ProductService : IProductService
             throw new ArgumentException("Search term is required.", nameof(request.SearchTerm));
         }
 
-        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand);
+        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand!);
         var searchTerm = request.SearchTerm.ToLower();
         
         var filteredProducts = products.Where(p => p.IsActive && p.Name.ToLower().Contains(searchTerm));

@@ -351,7 +351,7 @@ public class DownloadableFileService : IDownloadableFileService
         foreach (var file in files)
         {
             var fileWithUsers = await _unitOfWork.Repository<DownloadableFile>().GetByIdWithIncludesAsync(file.Id, 
-                f => f.CreatedByUser, f => f.UpdatedByUser);
+                f => f.CreatedByUser, f => f.UpdatedByUser!);
             if (fileWithUsers != null)
                 filesWithUsers.Add(MapToDto(fileWithUsers));
         }
