@@ -90,7 +90,7 @@ public class ProductPdfService : IProductPdfService
     public async Task<ProductPdfDto?> GetPdfByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var pdf = await _unitOfWork.Repository<ProductPdf>().GetByIdWithIncludesAsync(id, 
-            p => p.Product, p => p.CreatedByUser, p => p.UpdatedByUser);
+            p => p.Product, p => p.CreatedByUser, p => p.UpdatedByUser!);
 
         if (pdf == null) return null;
 
@@ -101,7 +101,7 @@ public class ProductPdfService : IProductPdfService
     {
         var pdf = await _unitOfWork.Repository<ProductPdf>()
             .FirstOrDefaultWithIncludesAsync(p => p.ProductId == productId, 
-                p => p.Product, p => p.CreatedByUser, p => p.UpdatedByUser);
+                p => p.Product, p => p.CreatedByUser, p => p.UpdatedByUser!);
 
         if (pdf == null) return null;
 
@@ -111,7 +111,7 @@ public class ProductPdfService : IProductPdfService
     public async Task<IEnumerable<ProductPdfDto>> GetAllPdfsAsync(CancellationToken cancellationToken = default)
     {
         var pdfs = await _unitOfWork.Repository<ProductPdf>().GetAllWithIncludesAsync(
-            p => p.Product, p => p.CreatedByUser, p => p.UpdatedByUser);
+            p => p.Product, p => p.CreatedByUser, p => p.UpdatedByUser!);
 
         return pdfs.Select(MapToDto).OrderByDescending(p => p.CreatedAt);
     }

@@ -71,7 +71,7 @@ public class DownloadableFileService : IDownloadableFileService
     public async Task<DownloadableFileDto?> GetFileByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var file = await _unitOfWork.Repository<DownloadableFile>().GetByIdWithIncludesAsync(id, 
-            f => f.CreatedByUser, f => f.UpdatedByUser);
+            f => f.CreatedByUser, f => f.UpdatedByUser!);
 
         if (file == null) return null;
 
@@ -81,7 +81,7 @@ public class DownloadableFileService : IDownloadableFileService
     public async Task<IEnumerable<DownloadableFileDto>> GetAllFilesAsync(CancellationToken cancellationToken = default)
     {
         var files = await _unitOfWork.Repository<DownloadableFile>().GetAllWithIncludesAsync(
-            f => f.CreatedByUser, f => f.UpdatedByUser);
+            f => f.CreatedByUser, f => f.UpdatedByUser!);
 
         return files.Select(MapToDto).OrderByDescending(f => f.CreatedAt);
     }
@@ -94,7 +94,7 @@ public class DownloadableFileService : IDownloadableFileService
         foreach (var file in files)
         {
             var fileWithUsers = await _unitOfWork.Repository<DownloadableFile>().GetByIdWithIncludesAsync(file.Id, 
-                f => f.CreatedByUser, f => f.UpdatedByUser);
+                f => f.CreatedByUser, f => f.UpdatedByUser!);
             if (fileWithUsers != null)
                 filesWithUsers.Add(MapToDto(fileWithUsers));
         }

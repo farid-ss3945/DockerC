@@ -132,7 +132,7 @@ public class ProductService : IProductService
             return new List<ProductListDto>();
 
         // Get products for this brand
-        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand);
+        var products = await _unitOfWork.Repository<Product>().GetAllWithIncludesAsync(p => p.Category, p => p.Prices, p => p.Brand!);
         var brandProducts = products.Where(p => p.BrandId == brand.Id && p.IsActive);
 
         var productDtos = _mapper.Map<IEnumerable<ProductListDto>>(brandProducts);
@@ -151,7 +151,7 @@ public class ProductService : IProductService
 
     public async Task<ProductDto?> GetProductByIdAsync(Guid id, UserRole? userRole = null, CancellationToken cancellationToken = default)
     {
-        var product = await _unitOfWork.Repository<Product>().GetByIdWithIncludesAsync(id, p => p.Category, p => p.Images);
+        var product = await _unitOfWork.Repository<Product>().GetByIdWithIncludesAsync(id, p => p.Category, p => p.Images, p => p.Brand!);
         
         if (product == null || !product.IsActive)
             return null;
@@ -186,7 +186,7 @@ public class ProductService : IProductService
 
     public async Task<ProductDto?> GetProductByIdAsync(Guid id, UserRole? userRole = null, Guid? userId = null, CancellationToken cancellationToken = default)
     {
-        var product = await _unitOfWork.Repository<Product>().GetByIdWithIncludesAsync(id, p => p.Category, p => p.Images, p => p.Brand);
+        var product = await _unitOfWork.Repository<Product>().GetByIdWithIncludesAsync(id, p => p.Category, p => p.Images, p => p.Brand!);
         
         if (product == null || !product.IsActive)
             return null;
@@ -228,7 +228,7 @@ public class ProductService : IProductService
     public async Task<ProductDto?> GetProductBySlugAsync(string slug, UserRole? userRole = null, CancellationToken cancellationToken = default)
     {
         var product = await _unitOfWork.Repository<Product>()
-            .FirstOrDefaultWithIncludesAsync(p => p.Slug == slug && p.IsActive, p => p.Category, p => p.Images, p => p.Brand);
+            .FirstOrDefaultWithIncludesAsync(p => p.Slug == slug && p.IsActive, p => p.Category, p => p.Images, p => p.Brand!);
 
         if (product == null)
             return null;
