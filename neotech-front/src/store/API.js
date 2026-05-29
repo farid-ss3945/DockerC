@@ -6,7 +6,7 @@ import {
 export const API = createApi({
   reducerPath: 'API',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5056',
+    baseUrl: '',
     prepareHeaders: (headers, {
       endpoint,
       body
@@ -1053,7 +1053,7 @@ export const API = createApi({
       queryFn: async (id) => {
         try {
           const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
-          const response = await fetch(`http://localhost:5056/api/v1/Files/download/${id}`, {
+          const response = await fetch(`/api/v1/Files/download/${id}`, {
             method: 'GET',
             headers: { 'Authorization': token ? `Bearer ${token}` : '' },
           });
