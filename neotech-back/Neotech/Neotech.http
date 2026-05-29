@@ -1,4 +1,4 @@
-﻿@Neotech_HostAddress = http://localhost:5055
+﻿@Neotech_HostAddress = http://localhost:5056
 
 GET {{Neotech_HostAddress}}/weatherforecast/
 Accept: application/json
