@@ -12,7 +12,7 @@ using Neotech.Infrastructure.Data;
 namespace Neotech.Infrastructure.Migrations
 {
     [DbContext(typeof(NeotechDbContext))]
-    [Migration("20251102191728_InitialCreate")]
+    [Migration("20260525143133_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

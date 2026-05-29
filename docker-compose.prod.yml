@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD}"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+  backend:
+    image: ${DOCKERHUB_USERNAME}/neotech-backend:latest
+    restart: always
+    depends_on:
+      - db
+    environment:
+      ASPNETCORE_URLS: "http://+:5056"
+      ConnectionStrings__DefaultConnection: "Server=db,1433;Database=NeotechDB;User Id=sa;Password=${MSSQL_SA_PASSWORD};Trust Server Certificate=True;"
+      JwtSettings__SecretKey: "${JWT_SECRET_KEY}"
+      JwtSettings__Issuer: "${JWT_ISSUER}"
+      JwtSettings__Audience: "${JWT_AUDIENCE}"
+    ports:
+      - "5056:5056"
+
+  frontend:
+    image: ${DOCKERHUB_USERNAME}/neotech-frontend:latest
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  mssql_data:

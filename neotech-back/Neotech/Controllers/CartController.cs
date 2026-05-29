@@ -340,7 +340,13 @@ public class CartController : ControllerBase
     public async Task<ActionResult<int>> GetCartCount(CancellationToken cancellationToken)
     {
         var userId = GetCurrentUserId();
+        if (userId == Guid.Empty)
+        {
+            return Ok(0); // Return 0 items for anonymous guests instead of crashing
+        }
         var count = await _cartService.GetCartCountAsync(userId, cancellationToken);
+        // Inside CartController or CartService
+        
         return Ok(count);
     }
 

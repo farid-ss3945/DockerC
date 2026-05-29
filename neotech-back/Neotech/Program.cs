@@ -156,6 +156,8 @@ namespace Neotech
                 }
             }
 
+            
+
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
