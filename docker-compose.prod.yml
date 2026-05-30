@@ -18,20 +18,22 @@ services:
     depends_on:
       - db
     environment:
-      ASPNETCORE_URLS: "http://13.51.85.33:5056"
+      ASPNETCORE_URLS: "http://+:5056"
       ConnectionStrings__DefaultConnection: "Server=db,1433;Database=NeotechDB;User Id=sa;Password=${MSSQL_SA_PASSWORD};Trust Server Certificate=True;"
       JwtSettings__SecretKey: "${JWT_SECRET_KEY}"
       JwtSettings__Issuer: "${JWT_ISSUER}"
       JwtSettings__Audience: "${JWT_AUDIENCE}"
     ports:
-      - "5056:5056" # Keep this so you can still access Swagger via port 5056 if needed
+      - "5056:5056"
 
-  # ─── Modified Frontend Gateway ──────────────────────────────────────────
   frontend:
-    image: nginx:alpine # Using a stock nginx image to act as a gateway router
+    image: ${DOCKERHUB_USERNAME}/neotech-frontend:latest
     restart: always
     depends_on:
       - backend
     ports:
-      - "80:80" # The only port the user's browser needs to connect to
-    
+      - "80:80"
+
+volumes:
+  mssql_data:
+    driver: local
