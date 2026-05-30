@@ -25,14 +25,14 @@ namespace Neotech
                 options.AddPolicy("AllowFrontend", policy =>
                 {
                     policy.WithOrigins(
-                        "http://localhost:5173", 
-                        "https://localhost:5173",
-                        "http://localhost",        
-                        "https://localhost",
+                        "http://13.51.85.33:5173", 
+                        "https://13.51.85.33:5173",
+                        "http://13.51.85.33",        
+                        "https://13.51.85.33",
                         "https://neo-techh.netlify.app",
                         "http://neo-techh.netlify.app",
-                        "https://localhost:7222",
-                        "https://localhost:7222"
+                        "https://13.51.85.33:7222",
+                        "https://13.51.85.33:7222"
                     )
                     .AllowAnyHeader()
                     .AllowAnyMethod()
