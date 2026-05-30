@@ -6,7 +6,7 @@ import {
 export const API = createApi({
   reducerPath: 'API',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://13.51.85.33:5056/api',
+    baseUrl: 'http://13.51.85.33:5056/api/v1',
     prepareHeaders: (headers, {
       endpoint,
       body
