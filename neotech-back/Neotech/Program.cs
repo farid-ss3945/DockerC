@@ -25,10 +25,10 @@ namespace Neotech
                 options.AddPolicy("AllowFrontend", policy =>
                 {
                     policy.WithOrigins(
-                        "http://13.51.85.33:5173", 
-                        "https://13.51.85.33:5173",
-                        "http://13.51.85.33",        
-                        "https://13.51.85.33",
+                        "http://16.171.149.77",
+                        "http://16.171.149.77:5173",
+                        "https://16.171.149.77",
+                        "https://16.171.149.77:5173",
                         "https://neo-techh.netlify.app",
                         "http://neo-techh.netlify.app",
                         "https://13.51.85.33:7222",
