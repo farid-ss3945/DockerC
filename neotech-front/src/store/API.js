@@ -115,15 +115,15 @@ export const API = createApi({
     // *CATEGORIES*
     getParentCategories: builder.query({
       query: () => ({
-        url: '/api/v1/Categories/root',
+        url: 'http://16.171.149.77/api/v1/Categories/root',
         method: 'GET',
-      }),
+      }), 
       providesTags: ['Categories'],
     }),
 
     getSubCategories: builder.query({
       query: (id) => ({
-        url: `/api/v1/Categories/${id}/subcategories`,
+        url: `http://16.171.149.77/api/v1/Categories/${id}/subcategories`,
         method: 'GET',
       }),
       providesTags: ['Categories'],
@@ -131,7 +131,7 @@ export const API = createApi({
 
     getCategory: builder.query({
       query: (slug) => ({
-        url: `/api/v1/Categories/slug/${slug}`,
+        url: `http://16.171.149.77/api/v1/Categories/slug/${slug}`,
         method: 'GET',
       }),
       providesTags: ['Categories'],
@@ -145,7 +145,7 @@ export const API = createApi({
         sortOrder,
         parentCategoryId
       }) => ({
-        url: '/api/v1/Categories',
+        url: 'http://16.171.149.77/api/v1/Categories',
         method: 'POST',
         body: {
           name,
@@ -167,7 +167,7 @@ export const API = createApi({
         id,
         isActive
       }) => ({
-        url: `/api/v1/Categories/${id}`,
+        url: `http://16.171.149.77/api/v1/Categories/${id}`,
         method: 'PUT',
         body: {
           name,
@@ -185,7 +185,7 @@ export const API = createApi({
         id,
         formData
       }) => ({
-        url: `/api/v1/Categories/${id}/with-image`,
+        url: `http://16.171.149.77/api/v1/Categories/${id}/with-image`,
         method: 'PUT',
         body: formData,
       }),
@@ -196,7 +196,7 @@ export const API = createApi({
       query: ({
         id
       }) => ({
-        url: `/api/v1/Categories/${id}`,
+        url: `http://16.171.149.77/api/v1/Categories/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Categories'],
@@ -204,7 +204,7 @@ export const API = createApi({
 
     addCategoryImage: builder.mutation({
       query: formData => ({
-        url: '/api/v1/Categories/with-image',
+        url: 'http://16.171.149.77/api/v1/Categories/with-image',
         method: 'POST',
         body: formData,
         prepareHeaders: headers => {
