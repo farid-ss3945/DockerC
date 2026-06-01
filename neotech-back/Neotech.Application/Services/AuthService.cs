@@ -140,7 +140,8 @@ public class AuthService : IAuthService
             Message = "Login successful",
             Success = true,
             Token = token,
-            ExpiresAt = _jwtService.GetTokenExpiry()
+            ExpiresAt = _jwtService.GetTokenExpiry(),
+            RefreshToken = refreshToken
         };
     }
 
