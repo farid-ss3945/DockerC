@@ -68,7 +68,7 @@ export const API = createApi({
         password,
         confirmPassword
       }) => ({
-        url: 'http://16.171.149.77/api/v1/Auth/register',
+        url: 'http://16.171.149.77:5056/api/v1/Auth/register',
         method: 'POST',
         body: {
           firstName,
