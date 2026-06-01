@@ -49,7 +49,7 @@ export const API = createApi({
         email,
         password
       }) => ({
-        url: 'http://16.171.149.77/api/v1/Auth/login',
+        url: 'http://16.171.149.77:5056/api/v1/Auth/login',
         method: 'POST',
         body: {
           email,
