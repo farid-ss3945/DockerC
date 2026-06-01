@@ -28,6 +28,8 @@ namespace Neotech
                         "http://16.171.149.77",
                         "http://16.171.149.77:5173",
                         "https://16.171.149.77",
+                        "http://16.171.149.77:5056",
+                        "https://16.171.149.77:5056",
                         "https://16.171.149.77:5173",
                         "https://neo-techh.netlify.app",
                         "http://neo-techh.netlify.app",

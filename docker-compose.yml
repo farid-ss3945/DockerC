@@ -16,7 +16,7 @@ services:
     depends_on:
       - db
     environment:
-      ASPNETCORE_URLS: "http://16.171.149.77:5056"
+      ASPNETCORE_URLS: "http://0.0.0.0:5056"
       ConnectionStrings__DefaultConnection: "Server=db,1433;Database=NeotechDB;User Id=sa;Password=StrongPassword123!;Trust Server Certificate=True;"
       JwtSettings__SecretKey: "765248acbdbe63ff7ac5f272f25c8e1062bf09af5736e220499948379ee5a9d9"
       JwtSettings__Issuer: "http://16.171.149.77:5056"
