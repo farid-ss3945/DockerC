@@ -3,31 +3,26 @@ import {
   fetchBaseQuery
 } from '@reduxjs/toolkit/query/react';
 
+// Robust utility to extract cookie value regardless of spacing quirks
+const getCookie = (name) => {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+};
+
 export const API = createApi({
   reducerPath: 'API',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://16.171.149.77:5056',
-    prepareHeaders: (headers, { endpoint, body }) => {
-      const isFormDataRequest =
-        endpoint === 'addProduct' ||
-        endpoint === 'addCategoryImage' ||
-        endpoint === 'addDetailImages' ||
-        endpoint === 'addBanner' ||
-        endpoint === 'uploadFile' ||
-        endpoint === 'addProductPdf' ||
-        endpoint === 'editProductWithImage' ||
-        endpoint === 'addBrandImage' ||
-        endpoint === 'editCategoryWithImage' ||
-        endpoint === 'editBrandWithImage' ||
-        endpoint === 'uploadMobileImage' ||
-        endpoint === 'uploadDesktopImage' ||
-        body instanceof FormData;
-
-      if (!isFormDataRequest) {
+    prepareHeaders: (headers, { body }) => {
+      // 1. Dynamic Content-Type Detection:
+      // NEVER force application/json if the body is an instance of FormData.
+      // Leaving it empty allows the browser to automatically set multi-part form headers and boundaries.
+      if (!(body instanceof FormData)) {
         headers.set('Content-Type', 'application/json');
       }
 
-      const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
+      // 2. Safe Token Extraction:
+      const token = getCookie('token');
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
@@ -685,7 +680,7 @@ export const API = createApi({
     downloadFile: builder.mutation({
       queryFn: async (id) => {
         try {
-          const token = document.cookie.split('; ').find(row => row.startsWith('token='))?.split('=')[1];
+          const token = getCookie('token');
           const response = await fetch(`http://16.171.149.77:5056/api/v1/Files/download/${id}`, {
             method: 'GET',
             headers: { 'Authorization': token ? `Bearer ${token}` : '' },
