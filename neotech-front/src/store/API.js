@@ -49,7 +49,7 @@ export const API = createApi({
         email,
         password
       }) => ({
-        url: '/api/v1/Auth/login',
+        url: 'http://16.171.149.77/api/v1/Auth/login',
         method: 'POST',
         body: {
           email,
@@ -68,7 +68,7 @@ export const API = createApi({
         password,
         confirmPassword
       }) => ({
-        url: '/api/v1/Auth/register',
+        url: 'http://16.171.149.77/api/v1/Auth/register',
         method: 'POST',
         body: {
           firstName,
@@ -86,7 +86,7 @@ export const API = createApi({
       query: ({
         email
       }) => ({
-        url: '/api/v1/Auth/forgot-password',
+        url: 'http://16.171.149.77/api/v1/Auth/forgot-password',
         method: 'POST',
         body: {
           email,
@@ -101,7 +101,7 @@ export const API = createApi({
         newPassword,
         confirmNewPassword
       }) => ({
-        url: '/api/v1/Auth/reset-password',
+        url: 'http://16.171.149.77/api/v1/Auth/reset-password',
         method: 'POST',
         body: {
           token,
@@ -117,7 +117,7 @@ export const API = createApi({
       query: () => ({
         url: 'http://16.171.149.77/api/v1/Categories/root',
         method: 'GET',
-      }), 
+      }),
       providesTags: ['Categories'],
     }),
 
@@ -218,7 +218,7 @@ export const API = createApi({
     // *USERS*
     getMe: builder.query({
       query: () => ({
-        url: '/api/v1/Auth/me',
+        url: 'http://16.171.149.77/api/v1/Auth/me',
         method: 'GET',
       }),
       providesTags: ['Auth'],
@@ -226,7 +226,7 @@ export const API = createApi({
 
     getUsers: builder.query({
       query: () => ({
-        url: '/api/v1/Admin/Users',
+        url: 'http://16.171.149.77/api/v1/Admin/Users',
         method: 'GET',
       }),
       providesTags: ['Users'],
@@ -234,7 +234,7 @@ export const API = createApi({
 
     getUserStatics: builder.query({
       query: () => ({
-        url: '/api/v1/Admin/users/statistics',
+        url: 'http://16.171.149.77/api/v1/Admin/users/statistics',
         method: 'GET',
       }),
       providesTags: ['Users'],
@@ -242,7 +242,7 @@ export const API = createApi({
 
     getUserRoles: builder.query({
       query: () => ({
-        url: '/api/v1/Admin/users/roles',
+        url: 'http://16.171.149.77/api/v1/Admin/users/roles',
         method: 'GET',
       }),
       providesTags: ['Users'],
@@ -254,7 +254,7 @@ export const API = createApi({
         currentPass,
         confirmNewPassword
       }) => ({
-        url: '/api/v1/Auth/change-password',
+        url: 'http://16.171.149.77/api/v1/Auth/change-password',
         method: 'POST',
         body: {
           currentPassword: currentPass,
@@ -267,7 +267,7 @@ export const API = createApi({
 
     getCategories: builder.query({
       query: () => ({
-        url: '/api/v1/Categories',
+        url: 'http://16.171.149.77/api/v1/Categories',
         method: 'GET',
       }),
       providesTags: ['Categories'],
@@ -282,7 +282,7 @@ export const API = createApi({
         isActive,
         id
       }) => ({
-        url: `/api/v1/Admin/users/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/users/${id}`,
         method: 'PUT',
         body: {
           firstName,
@@ -299,7 +299,7 @@ export const API = createApi({
       query: ({
         id
       }) => ({
-        url: `/api/v1/Admin/users/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/users/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Users'],
@@ -310,7 +310,7 @@ export const API = createApi({
         role,
         id
       }) => ({
-        url: `/api/v1/Admin/users/${id}/role`,
+        url: `http://16.171.149.77/api/v1/Admin/users/${id}/role`,
         method: 'PUT',
         body: {
           role
@@ -323,7 +323,7 @@ export const API = createApi({
       query: ({
         id
       }) => ({
-        url: `/api/v1/Admin/users/${id}/activate`,
+        url: `http://16.171.149.77/api/v1/Admin/users/${id}/activate`,
         method: 'POST',
       }),
       invalidatesTags: ['Users'],
@@ -333,7 +333,7 @@ export const API = createApi({
       query: ({
         id
       }) => ({
-        url: `/api/v1/Admin/users/${id}/deactivate`,
+        url: `http://16.171.149.77/api/v1/Admin/users/${id}/deactivate`,
         method: 'POST',
       }),
       invalidatesTags: ['Users'],
@@ -341,7 +341,7 @@ export const API = createApi({
 
     logout: builder.mutation({
       query: () => ({
-        url: '/api/v1/Auth/logout',
+        url: 'http://16.171.149.77/api/v1/Auth/logout',
         method: 'POST',
       }),
       invalidatesTags: ['Auth', 'Cart'],
@@ -350,7 +350,7 @@ export const API = createApi({
     // *PRODUCTS*
     getProducts: builder.query({
       query: () => ({
-        url: '/api/v1/Products',
+        url: 'http://16.171.149.77/api/v1/Products',
         method: 'GET',
       }),
       providesTags: ['Products'],
@@ -358,7 +358,7 @@ export const API = createApi({
 
     getProductsPaginated: builder.query({
       query: ({ page = 1, pageSize = 12 } = {}) => ({
-        url: '/api/v1/Products/paginated',
+        url: 'http://16.171.149.77/api/v1/Products/paginated',
         method: 'GET',
         params: {
           Page: page,
@@ -370,7 +370,7 @@ export const API = createApi({
 
     getProductsCategoryIdPage: builder.query({
       query: ({ categoryId, page = 1, pageSize = 12 } = {}) => ({
-        url: `/api/v1/Products/category/${categoryId}/paginated`,
+        url: `http://16.171.149.77/api/v1/Products/category/${categoryId}/paginated`,
         method: 'GET',
         params: {
           Page: page,
@@ -382,7 +382,7 @@ export const API = createApi({
 
     getProductsCategorySlugPage: builder.query({
       query: ({ categorySlug, page = 1, pageSize = 12 } = {}) => ({
-        url: `/api/v1/Products/category/slug/${categorySlug}/paginated`,
+        url: `http://16.171.149.77/api/v1/Products/category/slug/${categorySlug}/paginated`,
         method: 'GET',
         params: {
           Page: page,
@@ -394,7 +394,7 @@ export const API = createApi({
 
     getProductsBrandPage: builder.query({
       query: ({ brandSlug, page = 1, pageSize = 12 } = {}) => ({
-        url: `/api/v1/Products/brand/${brandSlug}/paginated`,
+        url: `http://16.171.149.77/api/v1/Products/brand/${brandSlug}/paginated`,
         method: 'GET',
         params: {
           Page: page,
@@ -406,7 +406,7 @@ export const API = createApi({
 
     getHotDealsPage: builder.query({
       query: ({ page = 1, pageSize = 12 } = {}) => ({
-        url: '/api/v1/Products/hot-deals/paginated',
+        url: 'http://16.171.149.77/api/v1/Products/hot-deals/paginated',
         method: 'GET',
         params: {
           Page: page,
@@ -418,7 +418,7 @@ export const API = createApi({
 
     searchProductsPage: builder.query({
       query: ({ searchTerm = '', page = 1, pageSize = 12 } = {}) => ({
-        url: '/api/v1/Products/search/paginated',
+        url: 'http://16.171.149.77/api/v1/Products/search/paginated',
         method: 'GET',
         params: {
           SearchTerm: searchTerm,
@@ -431,7 +431,7 @@ export const API = createApi({
 
     getRecommendedPage: builder.query({
       query: ({ productId, categoryId, limit = 4, page = 1, pageSize = 4 } = {}) => ({
-        url: '/api/v1/Products/recommendations/paginated',
+        url: 'http://16.171.149.77/api/v1/Products/recommendations/paginated',
         method: 'GET',
         params: {
           ProductId: productId,
@@ -446,7 +446,7 @@ export const API = createApi({
 
     getProduct: builder.query({
       query: (id) => ({
-        url: `/api/v1/Products/${id}`,
+        url: `http://16.171.149.77/api/v1/Products/${id}`,
         method: 'GET',
       }),
       providesTags: (result, error, id) => [{
@@ -457,28 +457,28 @@ export const API = createApi({
 
     getProductsBrand: builder.query({
       query: ({ brandSlug }) => ({
-        url: `/api/v1/Products/brand/${brandSlug}`,
+        url: `http://16.171.149.77/api/v1/Products/brand/${brandSlug}`,
         method: 'GET',
       }),
     }),
 
     getBrands: builder.query({
       query: () => ({
-        url: '/api/v1/Admin/brands',
+        url: 'http://16.171.149.77/api/v1/Admin/brands',
         method: 'GET',
       }),
     }),
 
     getBrand: builder.query({
       query: ({ id }) => ({
-        url: `/api/v1/Admin/brands/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/brands/${id}`,
         method: 'GET',
       }),
     }),
 
     getHotDeals: builder.query({
       query: ({ limit }) => ({
-        url: '/api/v1/Products/hot-deals',
+        url: 'http://16.171.149.77/api/v1/Products/hot-deals',
         method: 'GET',
         params: { limit }
       }),
@@ -487,7 +487,7 @@ export const API = createApi({
 
     getRecommended: builder.query({
       query: ({ categoryId, productId, limit }) => ({
-        url: '/api/v1/Products/recommendations',
+        url: 'http://16.171.149.77/api/v1/Products/recommendations',
         method: 'GET',
         params: {
           categoryId,
@@ -500,7 +500,7 @@ export const API = createApi({
 
     getProductsSummary: builder.query({
       query: () => ({
-        url: '/api/v1/Admin/products/stock/summary',
+        url: 'http://16.171.149.77/api/v1/Admin/products/stock/summary',
         method: 'GET',
       }),
       providesTags: ['Products'],
@@ -508,7 +508,7 @@ export const API = createApi({
 
     addProduct: builder.mutation({
       query: formData => ({
-        url: '/api/v1/Products/with-image',
+        url: 'http://16.171.149.77/api/v1/Products/with-image',
         method: 'POST',
         body: formData,
         prepareHeaders: headers => {
@@ -521,7 +521,7 @@ export const API = createApi({
 
     addDetailImages: builder.mutation({
       query: ({ id, images }) => ({
-        url: `/api/v1/Products/${id}/upload-images`,
+        url: `http://16.171.149.77/api/v1/Products/${id}/upload-images`,
         method: 'POST',
         body: images,
         prepareHeaders: headers => {
@@ -534,7 +534,7 @@ export const API = createApi({
 
     deleteProduct: builder.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/Products/${id}`,
+        url: `http://16.171.149.77/api/v1/Products/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Products'],
@@ -551,7 +551,7 @@ export const API = createApi({
         categoryId,
         id,
       }) => ({
-        url: `/api/v1/Products/${id}`,
+        url: `http://16.171.149.77/api/v1/Products/${id}`,
         method: 'PUT',
         body: {
           name,
@@ -568,7 +568,7 @@ export const API = createApi({
 
     filterProducts: builder.mutation({
       query: formData => ({
-        url: '/api/v1/Products/filter',
+        url: 'http://16.171.149.77/api/v1/Products/filter',
         method: 'POST',
         body: formData,
         prepareHeaders: headers => {
@@ -580,7 +580,7 @@ export const API = createApi({
 
     editProductWithImage: builder.mutation({
       query: ({ id, formData }) => ({
-        url: `/api/v1/Products/${id}/with-files`,
+        url: `http://16.171.149.77/api/v1/Products/${id}/with-files`,
         method: 'PUT',
         body: formData,
         prepareHeaders: (headers) => {
@@ -593,7 +593,7 @@ export const API = createApi({
 
     deleteDetailImage: builder.mutation({
       query: ({ id, imageUrl }) => ({
-        url: `/api/v1/Products/${id}/delete-detail-image?imageUrl=${encodeURIComponent(imageUrl)}`,
+        url: `http://16.171.149.77/api/v1/Products/${id}/delete-detail-image?imageUrl=${encodeURIComponent(imageUrl)}`,
         method: 'DELETE',
       }),
       invalidatesTags: (result, error, { id }) => [{ type: 'Products', id }],
@@ -601,14 +601,14 @@ export const API = createApi({
 
     deleteProductImage: builder.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/Products/images/${id}`,
+        url: `http://16.171.149.77/api/v1/Products/images/${id}`,
         method: 'DELETE',
       })
     }),
 
     searchProducts: builder.query({
       query: ({ q }) => ({
-        url: '/api/v1/Products/global-search',
+        url: 'http://16.171.149.77/api/v1/Products/global-search',
         method: 'GET',
         params: { q },
       }),
@@ -618,7 +618,7 @@ export const API = createApi({
     // *PRODUCT SPECIFICATIONS*
     getProductSpecifications: builder.query({
       query: (id) => ({
-        url: `/api/v1/Products/${id}/specifications`,
+        url: `http://16.171.149.77/api/v1/Products/${id}/specifications`,
         method: 'GET',
       }),
       providesTags: (result, error, id) => [{ type: 'Products', id }],
@@ -626,7 +626,7 @@ export const API = createApi({
 
     getProductsCategorySlug: builder.query({
       query: (categorySlug) => ({
-        url: `/api/v1/Products/category/slug/${categorySlug}`,
+        url: `http://16.171.149.77/api/v1/Products/category/slug/${categorySlug}`,
         method: 'GET',
       }),
       providesTags: (result, error, slug) => [{ type: 'Products', id: slug }],
@@ -634,7 +634,7 @@ export const API = createApi({
 
     addProductSpecifications: builder.mutation({
       query: ({ id, productId, specificationGroups }) => ({
-        url: `/api/v1/Products/${id}/specifications`,
+        url: `http://16.171.149.77/api/v1/Products/${id}/specifications`,
         method: 'POST',
         body: {
           productId,
@@ -646,7 +646,7 @@ export const API = createApi({
 
     updateProductSpecifications: builder.mutation({
       query: ({ id, specificationGroups }) => ({
-        url: `/api/v1/Products/${id}/specifications`,
+        url: `http://16.171.149.77/api/v1/Products/${id}/specifications`,
         method: 'PUT',
         body: {
           specificationGroups,
@@ -657,7 +657,7 @@ export const API = createApi({
 
     deleteProductSpecifications: builder.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/Products/${id}/specifications`,
+        url: `http://16.171.149.77/api/v1/Products/${id}/specifications`,
         method: 'DELETE',
       }),
       invalidatesTags: (result, error, { id }) => [{ type: 'Products', id }],
@@ -666,7 +666,7 @@ export const API = createApi({
     // *BANNERS*
     getBanners: builder.query({
       query: () => ({
-        url: '/api/v1/Admin/banners',
+        url: 'http://16.171.149.77/api/v1/Admin/banners',
         method: 'GET',
       }),
       providesTags: ['Banners'],
@@ -674,7 +674,7 @@ export const API = createApi({
 
     deleteBanner: builder.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/Admin/banners/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/banners/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Banners'],
@@ -682,7 +682,7 @@ export const API = createApi({
 
     addBanner: builder.mutation({
       query: formData => ({
-        url: '/api/v1/Admin/banners/with-image',
+        url: 'http://16.171.149.77/api/v1/Admin/banners/with-image',
         method: 'POST',
         body: formData,
         prepareHeaders: headers => {
@@ -695,7 +695,7 @@ export const API = createApi({
 
     updateBanner: builder.mutation({
       query: ({ id, ...data }) => ({
-        url: `/api/v1/Admin/banners/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/banners/${id}`,
         method: 'PUT',
         body: data,
       }),
@@ -707,7 +707,7 @@ export const API = createApi({
         const formData = new FormData();
         formData.append('imageFile', imageFile);
         return {
-          url: `/api/v1/Admin/banners/${id}/upload-mobile-image`,
+          url: `http://16.171.149.77/api/v1/Admin/banners/${id}/upload-mobile-image`,
           method: 'POST',
           body: formData,
           prepareHeaders: headers => {
@@ -724,7 +724,7 @@ export const API = createApi({
         const formData = new FormData();
         formData.append('imageFile', imageFile);
         return {
-          url: `/api/v1/Admin/banners/${id}/upload-image`,
+          url: `http://16.171.149.77/api/v1/Admin/banners/${id}/upload-image`,
           method: 'POST',
           body: formData,
           prepareHeaders: headers => {
@@ -739,7 +739,7 @@ export const API = createApi({
     // *FILTERS*
     getFilters: builder.query({
       query: () => ({
-        url: '/api/v1/Products/filters',
+        url: 'http://16.171.149.77/api/v1/Products/filters',
         method: 'GET',
       }),
       providesTags: ['Filters'],
@@ -747,7 +747,7 @@ export const API = createApi({
 
     addFilter: builder.mutation({
       query: ({ name, isActive, sortOrder, options }) => ({
-        url: '/api/v1/Admin/filters',
+        url: 'http://16.171.149.77/api/v1/Admin/filters',
         method: 'POST',
         body: {
           name,
@@ -762,7 +762,7 @@ export const API = createApi({
 
     removeFilter: builder.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/Admin/filters/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/filters/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Filters'],
@@ -770,7 +770,7 @@ export const API = createApi({
 
     removeFilterOption: builder.mutation({
       query: ({ filterId, optionId }) => ({
-        url: `/api/v1/Admin/filters/${filterId}/options/${optionId}`,
+        url: `http://16.171.149.77/api/v1/Admin/filters/${filterId}/options/${optionId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Filters'],
@@ -778,7 +778,7 @@ export const API = createApi({
 
     removeAllFiltersFromProduct: builder.mutation({
       query: ({ productId }) => ({
-        url: `/api/v1/Admin/products/${productId}/filters`,
+        url: `http://16.171.149.77/api/v1/Admin/products/${productId}/filters`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Filters'],
@@ -786,7 +786,7 @@ export const API = createApi({
 
     removeCustomFilterFromProduct: builder.mutation({
       query: ({ productId, filterId }) => ({
-        url: `/api/v1/Admin/products/${productId}/filters/${filterId}`,
+        url: `http://16.171.149.77/api/v1/Admin/products/${productId}/filters/${filterId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Filters'],
@@ -794,7 +794,7 @@ export const API = createApi({
 
     updateFilter: builder.mutation({
       query: ({ id, ...data }) => ({
-        url: `/api/v1/Admin/filters/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/filters/${id}`,
         method: 'PUT',
         body: data,
       }),
@@ -803,7 +803,7 @@ export const API = createApi({
 
     updateFilterOption: builder.mutation({
       query: ({ filterId, optionId, ...data }) => ({
-        url: `/api/v1/Admin/filters/${filterId}/options/${optionId}`,
+        url: `http://16.171.149.77/api/v1/Admin/filters/${filterId}/options/${optionId}`,
         method: 'PUT',
         body: data,
       }),
@@ -812,7 +812,7 @@ export const API = createApi({
 
     assignFilter: builder.mutation({
       query: (filterData) => ({
-        url: '/api/v1/Admin/products/filters/assign',
+        url: 'http://16.171.149.77/api/v1/Admin/products/filters/assign',
         method: 'POST',
         body: filterData,
       }),
@@ -821,7 +821,7 @@ export const API = createApi({
 
     getCategoryFilters: builder.query({
       query: (categoryId) => ({
-        url: `/api/v1/Products/category/${categoryId}/filters`,
+        url: `http://16.171.149.77/api/v1/Products/category/${categoryId}/filters`,
         method: 'GET',
       }),
       providesTags: (result, error, categoryId) => [{ type: 'CategoryFilters', id: categoryId }],
@@ -829,7 +829,7 @@ export const API = createApi({
 
     assignFiltersBulk: builder.mutation({
       query: (bulkFilterData) => ({
-        url: '/api/v1/Admin/products/filters/bulk-assign',
+        url: 'http://16.171.149.77/api/v1/Admin/products/filters/bulk-assign',
         method: 'POST',
         body: bulkFilterData,
       }),
@@ -839,7 +839,7 @@ export const API = createApi({
     // *CART*
     addCartItem: builder.mutation({
       query: ({ productId, quantity }) => ({
-        url: '/api/v1/cart/items',
+        url: 'http://16.171.149.77/api/v1/cart/items',
         method: 'POST',
         body: { productId, quantity },
       }),
@@ -848,7 +848,7 @@ export const API = createApi({
 
     getCartItems: builder.query({
       query: () => ({
-        url: '/api/v1/Cart',
+        url: 'http://16.171.149.77/api/v1/Cart',
         method: 'GET',
       }),
       providesTags: ['Cart'],
@@ -856,7 +856,7 @@ export const API = createApi({
 
     getCartCount: builder.query({
       query: () => ({
-        url: '/api/v1/Cart/count',
+        url: 'http://16.171.149.77/api/v1/Cart/count',
         method: 'GET',
       }),
       providesTags: ['Cart'],
@@ -864,7 +864,7 @@ export const API = createApi({
 
     updateCartItemQuantity: builder.mutation({
       query: ({ cartItemId, quantity }) => ({
-        url: `/api/v1/Cart/items/${cartItemId}`,
+        url: 'http://16.171.149.77/api/v1/Cart/items/${cartItemId}',
         method: 'PUT',
         body: { quantity },
       }),
@@ -873,7 +873,7 @@ export const API = createApi({
 
     removeCartItem: builder.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/Cart/items/${id}`,
+        url: `http://16.171.149.77/api/v1/Cart/items/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Cart'],
@@ -889,7 +889,7 @@ export const API = createApi({
 
     createWhatsappOrder: builder.mutation({
       query: (orderData) => ({
-        url: '/api/v1/Cart/whatsapp-order',
+        url: 'http://16.171.149.77/api/v1/Cart/whatsapp-order',
         method: 'POST',
         body: orderData,
       }),
@@ -898,7 +898,7 @@ export const API = createApi({
 
     quickOrder: builder.mutation({
       query: (orderData) => ({
-        url: '/api/v1/Cart/quick-order',
+        url: 'http://16.171.149.77/api/v1/Cart/quick-order',
         method: 'POST',
         body: orderData,
       })
@@ -907,7 +907,7 @@ export const API = createApi({
     // *FAVORITES*
     addFavorite: builder.mutation({
       query: ({ productId }) => ({
-        url: '/api/v1/Favorites',
+        url: 'http://16.171.149.77/api/v1/Favorites',
         method: 'POST',
         body: { productId },
       }),
@@ -916,7 +916,7 @@ export const API = createApi({
 
     removeFavorite: builder.mutation({
       query: ({ productId }) => ({
-        url: `/api/v1/Favorites/${productId}`,
+        url: 'http://16.171.149.77/api/v1/Favorites/${productId}',
         method: 'DELETE',
       }),
       invalidatesTags: ['Favorites', 'Products'],
@@ -924,7 +924,7 @@ export const API = createApi({
 
     getFavorites: builder.query({
       query: ({ page = 1, pageSize = 20 } = {}) => ({
-        url: '/api/v1/Favorites',
+        url: 'http://16.171.149.77/api/v1/Favorites',
         method: 'GET',
         params: { page, pageSize },
       }),
@@ -933,7 +933,7 @@ export const API = createApi({
 
     getFavoritesCount: builder.query({
       query: () => ({
-        url: '/api/v1/Favorites/count',
+        url: 'http://16.171.149.77/api/v1/Favorites/count',
         method: 'GET',
       }),
       providesTags: ['Favorites'],
@@ -941,7 +941,7 @@ export const API = createApi({
 
     getFavoriteStatus: builder.query({
       query: ({ productId }) => ({
-        url: `/api/v1/Favorites/status/${productId}`,
+        url: 'http://16.171.149.77/api/v1/Favorites/status/${productId}',
         method: 'GET',
       }),
       providesTags: (result, error, { productId }) => [{ type: 'Favorites', id: productId }],
@@ -949,7 +949,7 @@ export const API = createApi({
 
     toggleFavorite: builder.mutation({
       query: ({ productId }) => ({
-        url: `/api/v1/Favorites/toggle/${productId}`,
+        url: 'http://16.171.149.77/api/v1/Favorites/toggle/${productId}',
         method: 'POST',
       }),
       invalidatesTags: ['Favorites', 'Products'],
@@ -957,7 +957,7 @@ export const API = createApi({
 
     bulkCheckFavoriteStatus: builder.mutation({
       query: (productIds) => ({
-        url: '/api/v1/Favorites/bulk-status',
+        url: 'http://16.171.149.77/api/v1/Favorites/bulk-status',
         method: 'POST',
         body: productIds,
       }),
@@ -965,7 +965,7 @@ export const API = createApi({
 
     clearFavorites: builder.mutation({
       query: () => ({
-        url: '/api/v1/Favorites/clear',
+        url: 'http://16.171.149.77/api/v1/Favorites/clear',
         method: 'DELETE',
       }),
       invalidatesTags: ['Favorites'],
@@ -973,23 +973,23 @@ export const API = createApi({
 
     // *FILES & PDFS*
     getFilesUser: builder.query({
-      query: () => '/api/v1/files',
+      query: () => 'http://16.171.149.77/api/v1/files',
       providesTags: ['FilesUser'],
     }),
 
     getFiles: builder.query({
-      query: () => '/api/v1/Admin/files',
+      query: () => 'http://16.171.149.77/api/v1/Admin/files',
       providesTags: ['Files'],
     }),
 
     getFileById: builder.query({
-      query: (id) => `/api/v1/Admin/files/${id}`,
+      query: (id) => `http://16.171.149.77/api/v1/Admin/files/${id}`,
       providesTags: (result, error, id) => [{ type: 'Files', id }],
     }),
 
     removeFile: builder.mutation({
       query: (id) => ({
-        url: `/api/v1/Admin/files/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/files/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Files'],
@@ -997,7 +997,7 @@ export const API = createApi({
 
     uploadFile: builder.mutation({
       query: (formData) => ({
-        url: '/api/v1/Admin/files/upload',
+        url: 'http://16.171.149.77/api/v1/Admin/files/upload',
         method: 'POST',
         body: formData,
       }),
@@ -1006,7 +1006,7 @@ export const API = createApi({
 
     getProductPdfs: builder.query({
       query: () => ({
-        url: '/api/v1/Admin/product-pdfs',
+        url: 'http://16.171.149.77/api/v1/Admin/product-pdfs',
         method: 'GET',
       }),
       providesTags: ['ProductPdfs'],
@@ -1014,7 +1014,7 @@ export const API = createApi({
 
     getProductPdfById: builder.query({
       query: ({ id }) => ({
-        url: `/api/v1/Admin/product-pdfs/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/product-pdfs/${id}`,
         method: 'GET',
       }),
       providesTags: (result, error, { id }) => [{ type: 'ProductPdfs', id }],
@@ -1022,7 +1022,7 @@ export const API = createApi({
 
     addProductPdf: builder.mutation({
       query: ({ productId, formData }) => ({
-        url: `/api/v1/Admin/products/${productId}/pdf`,
+        url: `http://16.171.149.77/api/v1/Admin/products/${productId}/pdf`,
         method: 'POST',
         body: formData,
       }),
@@ -1031,7 +1031,7 @@ export const API = createApi({
 
     deleteProductPdf: builder.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/Admin/product-pdfs/${id}`,
+        url: `http://16.171.149.77/api/v1/Admin/product-pdfs/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['ProductPdfs', 'Products'],
@@ -1039,7 +1039,7 @@ export const API = createApi({
 
     getProductPdfByIdUser: builder.query({
       query: ({ productId }) => ({
-        url: `/api/v1/product-pdfs/download/product/${productId}`,
+        url: `http://16.171.149.77/api/v1/product-pdfs/download/product/${productId}`,
         method: 'GET',
         responseHandler: async (response) => {
           if (!response.ok) throw new Error('Failed to download PDF');
@@ -1083,19 +1083,19 @@ export const API = createApi({
     // *BRANDS*
     getBrandsAdmin: builder.query({
       query: () => ({
-        url: '/api/v1/Brands',
+        url: 'http://16.171.149.77/api/v1/Brands',
         method: 'GET',
       }),
       providesTags: ['Brands'],
     }),
 
     getBrandById: builder.query({
-      query: (id) => `/api/v1/Brands/${id}`,
+      query: (id) => `http://16.171.149.77/api/v1/Brands/${id}`,
       providesTags: (result, error, id) => [{ type: 'Brands', id }],
     }),
 
     getBrandBySlug: builder.query({
-      query: (slug) => `/api/v1/Brands/slug/${slug}`,
+      query: (slug) => `http://16.171.149.77/api/v1/Brands/slug/${slug}`,
       providesTags: (result, error, slug) => [{ type: 'Brands', id: slug }],
     }),
 
@@ -1104,7 +1104,7 @@ export const API = createApi({
         const formData = new FormData();
         formData.append("imageFile", file, file.name);
         return {
-          url: `/api/v1/Brands/with-image?name=${encodeURIComponent(name)}&sortOrder=${sortOrder}`,
+          url: `http://16.171.149.77/api/v1/Brands/with-image?name=${encodeURIComponent(name)}&sortOrder=${sortOrder}`,
           method: 'POST',
           body: formData,
           prepareHeaders: (headers) => {
@@ -1118,7 +1118,7 @@ export const API = createApi({
 
     editBrand: builder.mutation({
       query: ({ id, ...data }) => ({
-        url: `/api/v1/Brands/${id}`,
+        url: `http://16.171.149.77/api/v1/Brands/${id}`,
         method: 'PUT',
         body: data,
       }),
@@ -1131,7 +1131,7 @@ export const API = createApi({
         const formData = new FormData();
         if (file) formData.append("imageFile", file, file.name);
         return {
-          url: `/api/v1/Brands/${id}/with-image?name=${encodeURIComponent(name)}&sortOrder=${sortOrder}`,
+          url: `http://16.171.149.77/api/v1/Brands/${id}/with-image?name=${encodeURIComponent(name)}&sortOrder=${sortOrder}`,
           method: 'PUT',
           body: formData,
           prepareHeaders: (headers) => {
@@ -1145,7 +1145,7 @@ export const API = createApi({
 
     deleteBrand: builder.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/Brands/${id}`,
+        url: `http://16.171.149.77/api/v1/Brands/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Brands'],
